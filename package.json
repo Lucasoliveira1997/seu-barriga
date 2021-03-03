@@ -1,0 +1,30 @@
+{
+  "name": "seu-barriga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "lint": "eslint src/** test/** --fix",
+    "secure-mode": "jest --watchAll --verbose=true",
+    "knex": "knex --env test --knexfile ./knexfile.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "23.6.0",
+    "supertest": "3.3.0"
+  },
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "knex": "^0.21.18",
+    "knex-logger": "^0.1.0",
+    "pg": "7.7.1"
+  }
+}
