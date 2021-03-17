@@ -3,9 +3,21 @@ module.exports = (app) => {
     return app.db('accounts').insert(account, '*');
   };
 
-  const remove = async (id) => {
+  const findAll = async () => {
+    return app.db('accounts');
+  };
+
+  const findOne = async (id) => {
+    return app.db('accounts').where({ id }).first();
+  };
+
+  const removeById = async (id) => {
     await app.db('accounts').where({ id }).del();
   };
 
-  return { save, remove };
+  const removeManyByParam = async (param, value) => {
+    await app.db('accounts').where({ [param]: value }).del();
+  };
+
+  return { save, removeById, removeManyByParam, findAll, findOne };
 };

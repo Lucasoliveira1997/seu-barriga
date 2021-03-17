@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const { save, remove } = app.services.account;
+  const { save, remove, findAll, findOne } = app.services.account;
 
   const post = async (req, resp) => {
     try {
@@ -11,6 +11,25 @@ module.exports = (app) => {
     }
   };
 
+  const get = async (req, resp) => {
+    try {
+      const accounts = await findAll();
+
+      return resp.status(200).json(accounts);
+    } catch (error) {
+      return resp.status(400).json({ error });
+    }
+  };
+
+  const getById = async (req, resp) => {
+    try {
+      const account = await findOne(req.params.id);
+      return resp.status(200).json(account);
+    } catch (error) {
+      return resp.status(400).json({ error });
+    };
+  };
+
   const deleted = async (req, resp) => {
     try {
       const accountDeleted = await remove(req.params.id);
@@ -20,5 +39,5 @@ module.exports = (app) => {
     }
   };
 
-  return { post, deleted };
+  return { post, deleted, get, getById };
 };
